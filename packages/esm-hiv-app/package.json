@@ -1,6 +1,6 @@
 {
   "name": "openmrs-esm-ohri-hiv-app",
-  "version": "0.6.44",
+  "version": "0.6.45",
   "description": "A custom microfrontend for OpenMRS HIV Reference Implementation (OHRI)",
   "browser": "dist/openmrs-esm-ohri-hiv-app.js",
   "main": "src/index.ts",
@@ -139,5 +139,5 @@
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^4.2.1"
   },
-  "gitHead": "6f55ba8038f85799ec8e6c887906210311fac181"
+  "gitHead": "9f9c1a79a0dc011c3b9a5db386ec34f49846a899"
 }
