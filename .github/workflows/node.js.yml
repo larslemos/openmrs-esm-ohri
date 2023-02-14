@@ -224,7 +224,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: histacoohri/o3-esms-ohri-frontend:${{ steps.meta.outputs.tags }}
+          tags: histacoohri/o3-esms-ohri-frontend:ci
             
 
   pre_demo:
