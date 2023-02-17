@@ -210,7 +210,7 @@ jobs:
         with:
           context: .
           push: false
-          tags: ${{ secrets.DOCKER_USERNAME }}/openmrs-esm-ohri-frontend:ci
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/openmrs-esm-ohri-frontend:ci
           load: true
           build-args: |
             USERNAME=${{ github.actor }}
@@ -224,7 +224,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/openmrs-esm-ohri-frontend:ci
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/openmrs-esm-ohri-frontend:ci
             
 
   pre_demo:
