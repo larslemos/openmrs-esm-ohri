@@ -97,25 +97,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
-  release:
-    runs-on: ubuntu-latest
-
-    needs: pre_release
-
-    if: ${{ github.event_name == 'release' }}
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: 'https://registry.npmjs.org'
-      - run: yarn install --immutable
-      - run: yarn run ci:publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-
   working:
       runs-on: ubuntu-latest
 
@@ -174,8 +155,11 @@ jobs:
 
             port: ${{ secrets.HISTAC_NAMIBIA_PORT }}
   
-  docker_frontend: 
+  docker-openmrs-ohri-frontend:
     runs-on: ubuntu-latest
+
+    needs: build
+
     steps:
       -
         name: Checkout
@@ -226,7 +210,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/openmrs-esm-ohri-frontend:ci
             
-
   pre_demo:
     runs-on: ubuntu-latest
 
