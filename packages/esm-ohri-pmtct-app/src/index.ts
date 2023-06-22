@@ -8,7 +8,7 @@ import {
   motherChildDashboardMeta,
 } from './dashboard.meta';
 import { createDashboardGroup, createDashboardLink } from '@openmrs/esm-patient-common-lib';
-import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@ohri/openmrs-ohri-form-engine-lib';
+import { addToBaseFormsRegistry, registerPostSubmissionAction } from '@openmrs/openmrs-form-engine-lib';
 import mchForms from './form-entry/forms/forms-registry';
 import {
   createConditionalDashboardLink,
@@ -137,14 +137,15 @@ function setupOpenMRS() {
           moduleName,
         }),
       },
-      {
-        id: 'maternal-child-health-results-summary',
-        slot: 'dashboard-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options),
-        meta: motherChildDashboardMeta,
-        online: true,
-        offline: true,
-      },
+      // Temporarily comments MCH from OHRI home dashboard until feature is built
+      // {
+      //   id: 'maternal-child-health-results-summary',
+      //   slot: 'dashboard-slot',
+      //   load: getSyncLifecycle(createOHRIDashboardLink(motherChildDashboardMeta), options),
+      //   meta: motherChildDashboardMeta,
+      //   online: true,
+      //   offline: true,
+      // },
       {
         id: 'pmtct-home-tile-ext',
         slot: 'pmtct-home-tiles-slot',

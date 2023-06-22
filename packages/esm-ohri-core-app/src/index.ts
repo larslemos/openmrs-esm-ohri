@@ -7,12 +7,13 @@ import {
   createOHRIPatientChartSideNavLink,
   patientChartDivider_dashboardMeta,
   createOHRIDashboardLink,
+  PatientListTable,
 } from '@ohri/openmrs-esm-ohri-commons-lib';
 import {
   appointmentsDashboardMeta,
   homeDashboardMeta,
-  outpatientDashboardMeta,
-  pharmacyDashboardMeta,
+  dispensingDashboardMeta,
+  serviceQueuesDashboardMeta,
 } from './dashboard.meta';
 
 const importTranslation = require.context('../translations', false, /.json$/, 'lazy');
@@ -53,9 +54,9 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'ohri-all-patients-list',
+        id: 'ohri-patient-list',
         slot: 'ohri-home-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./components/all-patients-list/patient-list.component'), {
+        load: getSyncLifecycle(PatientListTable, {
           featureName: 'home',
           moduleName,
         }),
@@ -83,40 +84,40 @@ function setupOpenMRS() {
         offline: true,
       },
       {
-        id: 'pharmacy-ohri-dashboard-ext',
+        id: 'dispensing-ohri-dashboard-ext',
         slot: 'dashboard-links-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(pharmacyDashboardMeta), options),
-        meta: pharmacyDashboardMeta,
+        load: getSyncLifecycle(createOHRIDashboardLink(dispensingDashboardMeta), options),
+        meta: dispensingDashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'ohri-pharmacy-dashboard',
-        slot: 'ohri-pharmacy-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./ohri-dashboard/pharmacy/pharmacy-dashboard.component'), {
-          featureName: 'pharmacy-dashboard',
+        id: 'ohri-dispensing-dashboard',
+        slot: 'ohri-dispensing-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/dispensing/dispensing-dashboard.component'), {
+          featureName: 'dispensing-dashboard',
           moduleName,
         }),
-        meta: pharmacyDashboardMeta,
+        meta: dispensingDashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'outpatient-ohri-dashboard-ext',
+        id: 'service-queues-ohri-dashboard-ext',
         slot: 'dashboard-links-slot',
-        load: getSyncLifecycle(createOHRIDashboardLink(outpatientDashboardMeta), options),
-        meta: outpatientDashboardMeta,
+        load: getSyncLifecycle(createOHRIDashboardLink(serviceQueuesDashboardMeta), options),
+        meta: serviceQueuesDashboardMeta,
         online: true,
         offline: true,
       },
       {
-        id: 'ohri-outpatient-dashboard',
-        slot: 'ohri-outpatient-dashboard-slot',
-        load: getAsyncLifecycle(() => import('./ohri-dashboard/outpatient/outpatient-dashboard.component'), {
-          featureName: 'outpatient-dashboard',
+        id: 'ohri-service-queues-dashboard',
+        slot: 'ohri-service-queues-dashboard-slot',
+        load: getAsyncLifecycle(() => import('./ohri-dashboard/service-queues/service-queues-dashboard.component'), {
+          featureName: 'service-queues-dashboard',
           moduleName,
         }),
-        meta: outpatientDashboardMeta,
+        meta: serviceQueuesDashboardMeta,
         online: true,
         offline: true,
       },
@@ -129,14 +130,6 @@ function setupOpenMRS() {
         }),
         online: true,
         offline: true,
-      },
-      {
-        id: 'patient-list-modal',
-        slot: 'patient-actions-slot',
-        load: getAsyncLifecycle(() => import('./components/modals/patient-list/add-patient-to-list-modal.component'), {
-          featureName: 'patient-list-modal',
-          moduleName,
-        }),
       },
       {
         id: 'clinical-views-divider',
