@@ -16,17 +16,6 @@ on:
       - created
 
 jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout coode
-        uses: actions/checkout@v3
-      - name: Run code coverage
-        uses: ArtiomTr/jest-coverage-report-action@v2
-        with:
-          package-manager: yarn
-          test-script: yarn jest
-
   build:
     runs-on: ubuntu-latest
 
@@ -64,6 +53,18 @@ jobs:
           path: |
             packages/**/dist
 
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout coode
+        uses: actions/checkout@v3
+      - name: Run code coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          package-manager: yarn
+          test-script: yarn jest
+
   pre_release:
     runs-on: ubuntu-latest
 
@@ -72,9 +73,10 @@ jobs:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/dev' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout coode
+        uses: actions/checkout@v3
       - name: Use Node.js
-      - uses: actions/setup-node@v3
+        uses: actions/setup-node@v3
         with:
           registry-url: 'https://registry.npmjs.org'
 
@@ -115,7 +117,8 @@ jobs:
     if: ${{ github.event_name == 'release' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout coode
+        uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -146,9 +149,9 @@ jobs:
       if: ${{ github.ref == 'refs/heads/working' }}
 
       steps:
-        # Update the Microfrontends to reflect what we have in the Working branch
-        - uses: garygrossgarten/github-action-ssh@release
-          name: Run the Update MicroFronEnd Script
+        # Update the Microfrontends to reflect what we have in the Working branch\
+        - name: Run the Update MicroFronEnd Script
+          uses: garygrossgarten/github-action-ssh@release
           with:
               command: cd /usr/share/tomcat/microfrontends/working && /bin/bash update_microfrontends.sh
               host: ${{ secrets.HISTAC_HOST }}
@@ -222,9 +225,8 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
-      - uses: actions/checkout@v3
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
