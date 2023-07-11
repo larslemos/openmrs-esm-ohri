@@ -1,0 +1,40 @@
+{
+  "transform": {
+    "^.+\\.tsx?$": "@swc/jest"
+  },
+  "transformIgnorePatterns": ["/node_modules/(?!@openmrs)"],
+  "moduleNameMapper": {
+    "\\.(s?css)$": "identity-obj-proxy",
+    "@openmrs/esm-framework": "@openmrs/esm-framework/mock",
+    "^lodash-es/(.*)$": "lodash/$1",
+    "^uuid$": "<rootDir>/node_modules/uuid/dist/index.js"
+  },
+  "bail":1,
+  "collectCoverage": true,
+  "verbose": true,
+  "collectCoverageFrom": [
+    "**/src/**/*.component.tsx",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/src/**/*.test.*",
+    "!**/src/declarations.d.tsx"
+  ],
+  "coverageThreshold": {
+    "global": {
+      "statements": 0,
+      "branches": 0,
+      "functions": 0,
+      "lines": 0
+    }
+  },
+  "setupFilesAfterEnv": [
+    "<rootDir>/tools/setupTests.ts"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/packages/esm-form-entry-app"
+  ],
+  "testEnvironment": "jsdom",
+  "testEnvironmentOptions": {
+    "url": "http://localhost/"
+  }
+}
