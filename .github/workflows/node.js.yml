@@ -19,8 +19,10 @@ jobs:
   coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Checkout coode
+        uses: actions/checkout@v3
+      - name: Run code coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
           package-manager: yarn
           test-script: yarn jest
