@@ -32,12 +32,12 @@
   },
   "dependencies": {
     "@carbon/react": "^1.13.0",
-    "@openmrs/openmrs-form-engine-lib": "1.0.0-pre.244",
+    "@openmrs/openmrs-form-engine-lib": "2.1.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.29.3",
     "semver": "^7.3.7",
     "systemjs-webpack-interop": "^2.3.7",
-    "yup": "^0.29.1"
+    "yup": "^1.0.0"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "4.x",
