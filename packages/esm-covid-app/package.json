@@ -38,7 +38,7 @@
     "lodash-es": "^4.17.15",
     "moment": "^2.29.1",
     "systemjs-webpack-interop": "^2.3.7",
-    "yup": "^0.29.1"
+    "yup": "^1.0.0"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "4.x",
